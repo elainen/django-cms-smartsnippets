@@ -34,7 +34,7 @@ class SmartSnippetPlugin(CMSPluginBase):
             [(var, existing_dict.get(var, ''), existing_dict_is_active.get(var, False)) for var in variables]
         })
         return (super(SmartSnippetPlugin, self)
-            .change_view(request, object_id, extra_context))
+            .change_view(request, object_id, extra_context=extra_context))
 
     def render(self, context, instance, placeholder):
         context.update({'content': instance.render(context)})
