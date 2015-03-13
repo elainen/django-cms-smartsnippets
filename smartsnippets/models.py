@@ -59,6 +59,12 @@ class SmartSnippetPointer(CMSPlugin):
         context.update(vars)
         return self.snippet.render(context)
 
+    def copy_relations(self, old_instance):
+        for variable in old_instance.variables.all():
+            variable.pk = None
+            variable.snippet = self
+            variable.save()
+
     def __unicode__(self):
         return unicode(self.snippet)
 
